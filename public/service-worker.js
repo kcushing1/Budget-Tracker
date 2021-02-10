@@ -6,6 +6,7 @@ const FILES_TO_CACHE = [
   "/icons/icon-512x512.png",
   "/styles.css",
   "/manifest.webmanifest",
+  "/webpack.config.js",
   "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
   "https://cdn.jsdelivr.net/npm/chart.js@2.8.0",
 ];
@@ -15,7 +16,7 @@ const DATA_CACHE_NAME = "data-cache-v1";
 
 // install
 self.addEventListener("install", function (evt) {
-  // pre cache image data
+  // pre cache budget data
   evt.waitUntil(
     caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/transaction"))
   );
@@ -51,6 +52,7 @@ self.addEventListener("activate", function (evt) {
 // fetch
 self.addEventListener("fetch", function (evt) {
   if (evt.request.url.includes("/api/")) {
+    console.log("SW fetch data...is this working?");
     evt.respondWith(
       caches
         .open(DATA_CACHE_NAME)
