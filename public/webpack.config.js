@@ -1,9 +1,10 @@
 const path = require("path");
 
 const config = {
-  entry: "/index.js",
+  context: __dirname + "/src",
+  entry: "./assets/js/index.js",
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "./dist",
     filename: "bundle.js",
   },
   mode: "development",

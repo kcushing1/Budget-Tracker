@@ -39,7 +39,6 @@ self.addEventListener("activate", function (evt) {
       return Promise.all(
         keyList.map((key) => {
           if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-            console.log("Removing old cache data", key);
             return caches.delete(key);
           }
         })
@@ -53,7 +52,6 @@ self.addEventListener("activate", function (evt) {
 // fetch
 self.addEventListener("fetch", function (evt) {
   if (evt.request.url.includes("/api/")) {
-    console.log("SW fetch data...is this working?");
     evt.respondWith(
       caches
         .open(DATA_CACHE_NAME)
