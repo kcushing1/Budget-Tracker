@@ -19,7 +19,6 @@ request.onsuccess = () => {
   const transactionStore = transaction.objectStore("budgetDB");
 
   if (navigator.online) {
-    console.log("checking if online");
     checkDB();
   }
 };
@@ -33,7 +32,6 @@ function saveRecord(offlineTransaction) {
 }
 
 function checkDB() {
-  console.log("inside checkDB");
   //get all transactions and POST bulk
   let db = request.result;
   const transaction = db.transaction(["budgetDB"], "readwrite");
@@ -41,7 +39,6 @@ function checkDB() {
   const getAll = transactionStore.getAll();
 
   getAll.onsuccess = () => {
-    console.log(getAll.result, "get all results");
     fetch("/api/transaction/bulk", {
       method: "POST",
       body: JSON.stringify(getAll.result),
@@ -51,11 +48,9 @@ function checkDB() {
       },
     })
       .then((response) => {
-        console.log("getAll .then");
         response.json();
       })
       .then(() => {
-        console.log(".getAll clear step");
         const transaction = db.transaction(["budgetDB"], "readwrite");
         const transactionStore = transaction.objectStore("budgetDB");
         transactionStore.clear();
