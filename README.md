@@ -19,7 +19,7 @@ Try it out at: https://budget-tracker-kcushing1.herokuapp.com/
 
 ## Demonstration
 
-![Budget Tracker Demo](./public/assets/fitness-tracker-demo.gif)
+![Budget Tracker Demo](./public/assets/images/budget-tracker-snap.png)
 
 ## Installation
 
