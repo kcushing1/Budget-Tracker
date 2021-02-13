@@ -39,10 +39,12 @@ function checkDB() {
   const transaction = db.transaction(["budgetDB"], "readwrite");
   const transactionStore = transaction.objectStore("budgetDB");
   const getAll = transactionStore.getAll();
+
   getAll.onsuccess = () => {
+    console.log(getAll.result, "get all results");
     fetch("/api/transaction/bulk", {
       method: "POST",
-      body: JSON.stringify(transaction),
+      body: JSON.stringify(getAll.result),
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
